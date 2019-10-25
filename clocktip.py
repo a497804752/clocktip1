@@ -61,7 +61,18 @@ class clockForm(QWidget):
             painter.drawText(QRectF(x, y, width, height), Qt.AlignCenter, str(nhour))
         painter.restore()
 
-        time = QTime.currentTime()
+    def closeEvent(self, event):
+
+        reply = QtWidgets.QMessageBox.question(self,
+                                               '本程序',
+                                               "是否要退出程序？",
+                                               QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No,
+                                               QtWidgets.QMessageBox.No)
+        if reply == QtWidgets.QMessageBox.Yes:
+            event.accept()
+            os._exit(0)
+        else:
+            event.ignore()
 
 
 if __name__ == '__main__':
@@ -69,10 +80,8 @@ if __name__ == '__main__':
     form = clockForm()
     form.setWindowOpacity(0.5)
     form.setAttribute(QtCore.Qt.WA_TranslucentBackground)
-    form.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint| QtCore.Qt.Tool)
+    form.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint| QtCore.Qt.Tool |QtCore.Qt.WindowMaximizeButtonHint|
+         QtCore.Qt.WindowMinimizeButtonHint|QtCore.Qt.WindowCloseButtonHint)
     form.show()
-    #form.setWindowFlags(QtCore.Qt.WindowMinimizeButtonHint|QtCore.Qt.WindowCloseButtonHint|QtCore.Qt.WindowStaysOnTopHint)
     form.resize(200,200)
-    app.exec_()
-
-
+    sys.exit(app.exec_())
