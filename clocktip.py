@@ -10,7 +10,7 @@ from math import *
 class clockForm(QWidget):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("DN时钟盘小助手v0.1")
+        self.setWindowTitle("DN时钟盘小助手v0.2")
         self.timer = QTimer()
         # 设置窗口计时器
         self.timer.timeout.connect(self.update)
@@ -64,7 +64,7 @@ class clockForm(QWidget):
     def closeEvent(self, event):
 
         reply = QtWidgets.QMessageBox.question(self,
-                                               '本程序',
+                                               'DN时钟盘小助手v0.2',
                                                "是否要退出程序？",
                                                QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No,
                                                QtWidgets.QMessageBox.No)
